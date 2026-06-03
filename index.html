@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AntiParos Marine Group — The Home Port of Antiparos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   ANTIPAROS MARINE GROUP — Coming Soon
+   Tidal rhythm: bright hero → dark vision → light lifestyle →
+   light harbor → dark access → still footer.
+   Cyan accent used exactly 3 times: hero hairline, active
+   service numeral, access button.
+   ============================================================ */
+
+:root{
+  --paper:#F4F1EA;      /* limestone / oyster paper */
+  --paper-2:#EBE6DA;    /* warmer sand-paper */
+  --ink:#0E1F33;        /* deep sea ink (logo navy) */
+  --ink-2:#0A1727;      /* darker field */
+  --oyster:#EDE7DB;     /* light text on ink */
+  --cyan:#5BB8D6;       /* aegean accent — used sparingly */
+  --sand:#C9B79C;
+  --brass:#A98B5D;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Mulish', system-ui, sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+
+/* ---------- shared type helpers ---------- */
+.eyebrow{
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:.72rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+}
+.serif{font-family:var(--serif);}
+.measure{max-width:62ch;}
+
+/* placeholder photography badge */
+.ph{position:relative;}
+.ph::after{
+  content:"PLACEHOLDER · FINAL PHOTOGRAPHY TBR";
+  position:absolute;top:14px;left:14px;
+  font-family:var(--sans);font-size:.55rem;letter-spacing:.22em;
+  color:rgba(255,255,255,.82);
+  background:rgba(14,31,51,.42);
+  backdrop-filter:blur(4px);
+  padding:6px 10px;border:1px solid rgba(255,255,255,.25);
+  z-index:3;pointer-events:none;text-transform:uppercase;
+}
+
+/* ============================================================
+   BRAND LOCKUP (typographic recreation — recolors per surface)
+   ============================================================ */
+.brand{display:flex;flex-direction:column;align-items:center;line-height:1;text-align:center;}
+.brand .mono{
+  font-family:var(--serif);font-weight:500;
+  color:var(--cyan);letter-spacing:-.06em;
+  font-size:2.1rem;line-height:.9;
+}
+.brand .word{
+  font-family:var(--sans);font-weight:300;
+  letter-spacing:.02em;margin-top:.35em;
+}
+.brand .est{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  letter-spacing:.42em;font-size:.6rem;margin-top:.7em;
+  text-transform:uppercase;opacity:.7;padding-left:.42em;
+}
+.brand.on-ink .word{color:var(--oyster);}
+.brand.on-ink .est{color:var(--sand);}
+.brand.on-paper .word{color:var(--ink);}
+.brand.on-paper .est{color:var(--brass);}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 56px;
+  transition:background .5s ease, padding .5s ease, box-shadow .5s ease;
+}
+.nav.scrolled{
+  background:rgba(244,241,234,.86);
+  backdrop-filter:blur(14px);
+  padding:18px 56px;
+  box-shadow:0 1px 0 rgba(14,31,51,.08);
+}
+.nav__mono{
+  font-family:var(--serif);font-weight:500;font-size:1.7rem;
+  letter-spacing:-.05em;color:var(--cyan);
+  transition:color .5s ease;
+}
+.nav__word{
+  font-family:var(--sans);font-weight:300;font-size:.95rem;
+  letter-spacing:.04em;color:#fff;margin-left:.6em;
+  opacity:0;max-width:0;overflow:hidden;white-space:nowrap;
+  transition:opacity .5s ease,max-width .5s ease,color .5s ease;
+}
+.nav.scrolled .nav__word{opacity:1;max-width:220px;color:var(--ink);}
+.nav__brand{display:flex;align-items:baseline;}
+.nav__links{display:flex;gap:42px;align-items:center;}
+.nav__links a{
+  font-family:var(--sans);font-size:.72rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:#fff;text-decoration:none;position:relative;
+  transition:color .4s ease;
+}
+.nav.scrolled .nav__links a{color:var(--ink);}
+.nav__links a:not(.nav__cta)::after{
+  content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;
+  background:var(--cyan);transition:width .28s ease;
+}
+.nav__links a:not(.nav__cta):hover::after{width:100%;}
+.nav__cta{padding-bottom:5px;border-bottom:1px solid var(--brass);}
+.nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.nav__burger span{display:block;width:26px;height:1.5px;background:#fff;transition:background .4s ease;}
+.nav.scrolled .nav__burger span{background:var(--ink);}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;height:100vh;min-height:480px;overflow:hidden;background:var(--ink);}
+.hero__media{position:absolute;inset:0;z-index:1;}
+.hero__media img{
+  width:100%;height:100%;object-fit:cover;
+  animation:kenburns 26s ease-in-out infinite alternate;
+}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.hero__grad{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(180deg, rgba(10,23,39,.42) 0%, rgba(10,23,39,0) 22%, rgba(10,23,39,.05) 42%, rgba(10,23,39,.62) 78%, rgba(10,23,39,.88) 100%),
+    linear-gradient(90deg, rgba(10,23,39,.55) 0%, rgba(10,23,39,.12) 42%, rgba(10,23,39,0) 65%);
+}
+.hero__video-tag{
+  position:absolute;top:104px;left:56px;z-index:4;
+  font-family:var(--sans);font-size:.55rem;letter-spacing:.22em;
+  color:rgba(255,255,255,.8);text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.3);padding:6px 11px;
+  background:rgba(10,23,39,.3);backdrop-filter:blur(4px);
+}
+.hero__corner{
+  position:absolute;top:96px;right:56px;z-index:4;
+  font-family:var(--sans);font-size:.66rem;font-weight:500;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--oyster);
+  border:1px solid var(--brass);padding:10px 18px;border-radius:2px;
+}
+.hero__content{
+  position:absolute;z-index:4;left:56px;bottom:10vh;max-width:820px;
+}
+.hero__kicker{
+  color:var(--sand);margin-bottom:26px;
+  display:flex;align-items:center;gap:16px;
+}
+.hero__kicker::after{content:"";height:1px;width:64px;background:var(--cyan);} /* cyan accent #1 */
+.hero__title{
+  font-family:var(--serif);font-weight:300;color:#fff;
+  font-size:clamp(2.6rem,5.8vw,5.6rem);line-height:1.05;
+  letter-spacing:-.01em;margin-bottom:28px;max-width:16ch;
+  text-shadow:0 2px 50px rgba(10,23,39,.5);
+}
+.hero__title .w{display:inline-block;}
+@keyframes riseIn{from{transform:translateY(18px);}to{transform:none;}}
+@media (prefers-reduced-motion:no-preference){
+  .js .hero__title{animation:riseIn 1.1s cubic-bezier(.2,.7,.2,1) .35s both;}
+  .js .hero__sub{animation:riseIn 1.1s cubic-bezier(.2,.7,.2,1) .75s both;}
+}
+.hero__sub{
+  font-family:var(--sans);font-weight:300;color:rgba(255,255,255,.94);
+  font-size:clamp(1.05rem,1.5vw,1.45rem);line-height:1.55;max-width:60ch;
+  text-shadow:0 1px 30px rgba(10,23,39,.55);
+}
+.hero__scroll{
+  position:absolute;left:50%;bottom:34px;z-index:4;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.hero__scroll span{
+  font-family:var(--sans);font-size:.58rem;letter-spacing:.3em;
+  color:rgba(255,255,255,.7);text-transform:uppercase;
+}
+.hero__scroll i{display:block;width:1px;height:46px;background:rgba(255,255,255,.5);transform-origin:top;animation:breathe 2.4s ease-in-out infinite;}
+@keyframes breathe{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ============================================================
+   VISION (dark / heritage)
+   ============================================================ */
+.vision{position:relative;background:var(--ink);color:var(--oyster);padding:160px 56px;overflow:hidden;}
+.vision__mono{
+  position:absolute;font-family:var(--serif);font-weight:500;
+  font-size:46vw;line-height:.7;color:var(--brass);opacity:.05;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;letter-spacing:-.08em;white-space:nowrap;z-index:1;
+}
+.vision__inner{position:relative;z-index:2;max-width:1320px;margin:0 auto;
+  display:grid;grid-template-columns:1.25fr .9fr;gap:90px;align-items:center;}
+.vision__eyebrow{color:var(--sand);margin-bottom:40px;}
+.vision__quote{
+  font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(1.7rem,2.7vw,2.5rem);line-height:1.42;color:#fff;
+}
+.vision__quote .reveal-line{display:block;}
+.vision__sign{
+  margin-top:42px;display:flex;align-items:center;gap:18px;
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--sand);
+}
+.vision__sign::before{content:"";width:46px;height:1px;background:var(--brass);}
+.vision__img{position:relative;height:560px;overflow:hidden;}
+.vision__img img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) brightness(.85);}
+
+/* ============================================================
+   LIFESTYLE (light / human — editorial mosaic)
+   ============================================================ */
+.life{background:var(--paper);padding:170px 56px 150px;position:relative;}
+.life__head{max-width:1320px;margin:0 auto 90px;}
+.life__eyebrow{color:var(--brass);margin-bottom:34px;}
+.life__lead{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(2.1rem,4.6vw,4rem);line-height:1.06;
+  letter-spacing:-.01em;max-width:18ch;
+}
+.life__lead em{font-style:italic;color:var(--ink);}
+.life__mosaic{
+  max-width:1320px;margin:0 auto;position:relative;
+  display:grid;grid-template-columns:repeat(12,1fr);gap:30px;row-gap:54px;
+}
+.life__fig{position:relative;overflow:hidden;}
+.life__fig img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1);}
+.life__fig:hover img{transform:scale(1.05);}
+.life__fig figcaption{
+  margin-top:16px;font-family:var(--sans);font-size:.62rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--brass);
+}
+.fig-a{grid-column:1 / 6;height:480px;align-self:start;}
+.fig-b{grid-column:7 / 13;height:560px;margin-top:60px;}
+.fig-c{grid-column:3 / 10;height:520px;margin-top:10px;}
+.life__frag{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.85rem);line-height:1.4;color:var(--ink);
+  align-self:center;
+}
+.frag-1{grid-column:7 / 12;}
+.frag-2{grid-column:1 / 5;align-self:center;}
+.frag-3{grid-column:10 / 13;align-self:center;}
+
+/* ============================================================
+   THE HARBOR (services as chapters)
+   ============================================================ */
+.harbor{background:var(--paper-2);padding:150px 56px 160px;}
+.harbor__inner{max-width:1320px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:start;}
+.harbor__left{position:sticky;top:120px;}
+.harbor__eyebrow{color:var(--brass);margin-bottom:30px;}
+.harbor__frame-title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(2rem,3.4vw,3rem);line-height:1.08;margin-bottom:50px;
+  letter-spacing:-.01em;max-width:16ch;
+}
+.harbor__list{list-style:none;}
+.harbor__item{
+  display:flex;align-items:baseline;gap:22px;
+  padding:22px 0;border-top:1px solid rgba(14,31,51,.14);
+  cursor:pointer;transition:padding-left .4s cubic-bezier(.2,.7,.2,1);
+}
+.harbor__item:last-child{border-bottom:1px solid rgba(14,31,51,.14);}
+.harbor__num{
+  font-family:var(--sans);font-size:.7rem;font-weight:600;
+  letter-spacing:.1em;color:var(--brass);min-width:28px;
+  transition:color .4s ease;
+}
+.harbor__name{
+  font-family:var(--serif);font-weight:400;font-size:1.55rem;
+  color:rgba(14,31,51,.42);transition:color .4s ease;line-height:1.2;
+}
+.harbor__plain{
+  display:block;font-family:var(--sans);font-size:.62rem;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(14,31,51,.34);
+  margin-top:6px;transition:color .4s ease;
+}
+.harbor__item.active{padding-left:14px;}
+.harbor__item.active .harbor__num{color:var(--cyan);} /* cyan accent #2 */
+.harbor__item.active .harbor__name{color:var(--ink);}
+.harbor__item.active .harbor__plain{color:var(--brass);}
+.harbor__close{
+  margin-top:44px;font-family:var(--serif);font-style:italic;
+  font-size:1.1rem;color:rgba(14,31,51,.55);
+}
+.harbor__stage{position:relative;height:640px;overflow:hidden;}
+.harbor__stage img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .6s ease, transform 7s ease;
+  transform:scale(1.04);
+}
+.harbor__stage img.show{opacity:1;transform:scale(1.1);}
+
+/* ============================================================
+   EARLY ACCESS
+   ============================================================ */
+.access{position:relative;min-height:84vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--ink);}
+.access__media{position:absolute;inset:0;z-index:1;}
+.access__media img{width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.9);}
+.access__grad{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at center, rgba(10,23,39,.2) 0%, rgba(10,23,39,.78) 78%);}
+.access__inner{position:relative;z-index:3;text-align:center;max-width:640px;padding:0 24px;}
+.access__eyebrow{color:var(--sand);margin-bottom:30px;}
+.access__title{font-family:var(--serif);font-weight:300;color:#fff;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.05;margin-bottom:26px;}
+.access__sub{font-family:var(--sans);font-weight:300;color:rgba(255,255,255,.82);font-size:1.08rem;line-height:1.6;max-width:50ch;margin:0 auto 46px;}
+.access__form{display:flex;gap:0;max-width:520px;margin:0 auto;border-bottom:1px solid rgba(255,255,255,.4);transition:border-color .4s ease;}
+.access__form:focus-within{border-color:var(--cyan);}
+.access__form input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:var(--sans);font-size:1rem;color:#fff;
+  padding:16px 4px;letter-spacing:.02em;
+}
+.access__form input::placeholder{color:rgba(255,255,255,.5);letter-spacing:.1em;}
+.access__btn{
+  background:none;border:1px solid var(--cyan);color:#fff; /* cyan accent #3 */
+  font-family:var(--sans);font-size:.7rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:0 28px;margin-left:18px;cursor:pointer;border-radius:2px;
+  transition:background .3s ease,color .3s ease;white-space:nowrap;
+}
+.access__btn:hover{background:var(--cyan);color:var(--ink);}
+.access__micro{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(255,255,255,.6);}
+.access__success{
+  font-family:var(--serif);font-style:italic;font-size:1.5rem;color:#fff;
+  opacity:0;height:0;overflow:hidden;transition:opacity .5s ease;
+}
+.access.done .access__form,.access.done .access__micro{display:none;}
+.access.done .access__success{opacity:1;height:auto;}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:var(--ink-2);color:var(--oyster);padding:90px 56px 50px;text-align:center;}
+.footer__rule{max-width:1100px;height:1px;background:rgba(169,139,93,.4);margin:54px auto 0;}
+.footer__row{
+  max-width:1100px;margin:0 auto;padding:34px 0 0;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--sans);font-size:.68rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--sand);
+}
+.footer__row a{color:var(--sand);text-decoration:none;transition:color .3s ease;}
+.footer__row a:hover{color:#fff;}
+.footer__links{display:flex;align-items:center;gap:16px;}
+.footer__links .dot{width:4px;height:4px;border-radius:50%;background:var(--cyan);}
+.footer__tag{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--oyster);margin:64px 0 14px;}
+.footer__copy{font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;color:rgba(237,231,219,.4);text-transform:uppercase;}
+
+/* ============================================================
+   REVEAL ANIMATION (scroll)
+   ============================================================ */
+.reveal{transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity 1s cubic-bezier(.2,.7,.2,1);}
+.js .reveal{transform:translateY(30px);}
+.reveal.in{transform:none;}
+.reveal-line{transition:transform .9s ease,opacity .9s ease;}
+.js .reveal-line{transform:translateY(20px);}
+.reveal-line.in{transform:none;}
+
+/* ============================================================
+   RESPONSIVE — MOBILE EXPERIENCE
+   ============================================================ */
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+  opacity:0;pointer-events:none;transition:opacity .45s ease;
+}
+.mobile-menu.open{opacity:1;pointer-events:auto;}
+.mobile-menu a{font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--oyster);text-decoration:none;}
+.mobile-menu .est{margin-top:30px;}
+
+@media (max-width:1024px){
+  .vision__inner{grid-template-columns:1fr;gap:56px;}
+  .vision__img{height:420px;}
+  .harbor__inner{grid-template-columns:1fr;gap:48px;}
+  .harbor__left{position:static;}
+  .harbor__stage{height:440px;}
+}
+
+@media (max-width:720px){
+  .nav{padding:20px 24px;}
+  .nav.scrolled{padding:14px 24px;}
+  .nav__links{display:none;}
+  .nav__burger{display:flex;}
+  .hero__content{left:24px;right:24px;bottom:14vh;}
+  .hero__video-tag{top:86px;left:24px;}
+  .hero__corner{top:80px;right:24px;font-size:.56rem;padding:8px 12px;letter-spacing:.24em;}
+  .hero__title{font-size:clamp(2.6rem,13vw,4.2rem);}
+  .hero__kicker{font-size:.6rem;margin-bottom:18px;}
+  .hero__kicker::after{width:38px;}
+  .vision{padding:96px 24px;}
+  .vision__mono{font-size:90vw;}
+  .life{padding:96px 24px;}
+  .life__head{margin-bottom:54px;}
+  .life__mosaic{display:flex;flex-direction:column;gap:14px;}
+  .life__fig{height:auto !important;margin:0 !important;}
+  .fig-a,.fig-b,.fig-c{height:auto;}
+  .life__fig img{height:64vw;object-fit:cover;}
+  .life__frag{margin:18px 0 22px;font-size:1.4rem;}
+  .harbor{padding:96px 24px;}
+  .harbor__name{font-size:1.3rem;}
+  .harbor__stage{height:62vw;order:-1;margin-bottom:8px;}
+  .access{min-height:78vh;}
+  .access__form{flex-direction:column;border:none;gap:14px;}
+  .access__form input{border-bottom:1px solid rgba(255,255,255,.4);text-align:center;}
+  .access__btn{margin-left:0;padding:16px;border-color:var(--cyan);}
+  .footer{padding:64px 24px 40px;}
+  .footer__row{flex-direction:column;gap:18px;font-size:.6rem;}
+  .footer__tag{font-size:1.25rem;margin:44px 0 12px;}
+  .ph::after{font-size:.46rem;padding:4px 7px;top:10px;left:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav" id="nav">
+  <div class="nav__brand">
+    <span class="nav__mono">AM</span>
+    <span class="nav__word">Antiparos Marine</span>
+  </div>
+  <div class="nav__links">
+    <a href="#vision">The Vision</a>
+    <a href="#harbor">The Harbor</a>
+    <a href="#access">Early Access</a>
+    <a href="#access" class="nav__cta">Priority Access</a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#vision" data-close>The Vision</a>
+  <a href="#harbor" data-close>The Harbor</a>
+  <a href="#access" data-close>Early Access</a>
+  <a href="#access" data-close>Priority Access</a>
+  <span class="eyebrow est" style="color:var(--sand);letter-spacing:.4em;font-family:var(--serif);font-style:italic;">Est. 2011</span>
+</div>
+
+<!-- ============================== HERO ============================== -->
+<header class="hero" data-screen-label="Hero">
+  <div class="hero__media">
+    <img src="assets/hero-lagoon.jpg" alt="Antiparos turquoise lagoon" />
+  </div>
+  <div class="hero__grad"></div>
+  <div class="hero__video-tag">▶ Aerial video loop — placeholder still</div>
+  <div class="hero__corner">Arriving 2026</div>
+
+  <div class="hero__content">
+    <div class="hero__kicker eyebrow">Antiparos · Cyclades · Est 2011</div>
+    <h1 class="hero__title" id="heroTitle">The Home Port of Antiparos.</h1>
+    <p class="hero__sub" id="heroSub">A new lifestyle harbor for the island — for boats, for people, for the way Antiparos lives.</p>
+  </div>
+
+  <div class="hero__scroll">
+    <i></i>
+    <span>Scroll</span>
+  </div>
+</header>
+
+<!-- ============================== VISION ============================== -->
+<section class="vision" id="vision" data-screen-label="Vision">
+  <div class="vision__mono">AM</div>
+  <div class="vision__inner">
+    <div>
+      <div class="vision__eyebrow eyebrow">The Vision</div>
+      <blockquote class="vision__quote reveal">
+        “For fifteen years, Antiparos has been our home. We came to know its rhythms — the boats that winter here, the families who stay past summer, the quiet that returns each autumn. Now we are building a place to hold all of it. One address on the water, where the island gathers.”
+      </blockquote>
+      <div class="vision__sign">AntiParos Marine Group · Est. 2011</div>
+    </div>
+    <div class="vision__img ph reveal">
+      <img src="assets/cove.jpg" alt="Still water at the cove" />
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LIFESTYLE ============================== -->
+<section class="life" data-screen-label="Lifestyle">
+  <div class="life__head">
+    <div class="life__eyebrow eyebrow reveal">The Island, Lived</div>
+    <h2 class="life__lead reveal">Some places you visit. <em>This one you belong to.</em></h2>
+  </div>
+  <div class="life__mosaic">
+    <figure class="life__fig fig-a ph reveal">
+      <img src="assets/boat-cruise.jpg" alt="Morning on the water" />
+      <figcaption>Mornings on the water — Antiparos</figcaption>
+    </figure>
+    <p class="life__frag frag-1 reveal">Mornings that start with coffee and end on the water.</p>
+
+    <figure class="life__fig fig-b ph reveal">
+      <img src="assets/village.jpg" alt="Evenings in the village" />
+      <figcaption>Long evenings ashore</figcaption>
+    </figure>
+    <p class="life__frag frag-2 reveal">Long evenings. Good company. The sound of the rally.</p>
+
+    <figure class="life__fig fig-c ph reveal">
+      <img src="assets/cove.jpg" alt="The island slows you down" />
+      <figcaption>The pace of the island</figcaption>
+    </figure>
+    <p class="life__frag frag-3 reveal">The island slows you down. We built a place to match.</p>
+  </div>
+</section>
+
+<!-- ============================== THE HARBOR (services) ============================== -->
+<section class="harbor" id="harbor" data-screen-label="Harbor">
+  <div class="harbor__inner">
+    <div class="harbor__left">
+      <div class="harbor__eyebrow eyebrow reveal">What's Coming Ashore</div>
+      <h2 class="harbor__frame-title reveal">A harbor for the practical and the beautiful alike.</h2>
+      <ul class="harbor__list" id="harborList">
+        <li class="harbor__item active" data-img="0">
+          <span class="harbor__num">01</span>
+          <span class="harbor__name">Berthing &amp; Boat Care<span class="harbor__plain">VIP Boat Parking</span></span>
+        </li>
+        <li class="harbor__item" data-img="1">
+          <span class="harbor__num">02</span>
+          <span class="harbor__name">Harbor Parking<span class="harbor__plain">Car &amp; Jet Ski</span></span>
+        </li>
+        <li class="harbor__item" data-img="2">
+          <span class="harbor__num">03</span>
+          <span class="harbor__name">The Wash House<span class="harbor__plain">Car Wash</span></span>
+        </li>
+        <li class="harbor__item" data-img="3">
+          <span class="harbor__num">04</span>
+          <span class="harbor__name">The Courts<span class="harbor__plain">Padel</span></span>
+        </li>
+        <li class="harbor__item" data-img="4">
+          <span class="harbor__num">05</span>
+          <span class="harbor__name">Kitchen &amp; Coffee<span class="harbor__plain">Home-Cooked Food &amp; Coffee</span></span>
+        </li>
+        <li class="harbor__item" data-img="5">
+          <span class="harbor__num">06</span>
+          <span class="harbor__name">The Studio<span class="harbor__plain">Wellness</span></span>
+        </li>
+        <li class="harbor__item" data-img="6">
+          <span class="harbor__num">07</span>
+          <span class="harbor__name">Spaces to Let<span class="harbor__plain">Commercial Rental</span></span>
+        </li>
+      </ul>
+      <p class="harbor__close">Opening in stages through 2026.</p>
+    </div>
+    <div class="harbor__stage ph" id="harborStage">
+      <img src="assets/yacht-care.jpg" class="show" alt="Berthing and boat care" />
+      <img src="assets/cove.jpg" alt="Harbor parking" />
+      <img src="assets/hero-lagoon.jpg" alt="The wash house" />
+      <img src="assets/boat-cruise.jpg" alt="The courts" />
+      <img src="assets/village.jpg" alt="Kitchen and coffee" />
+      <img src="assets/cove.jpg" alt="The studio" />
+      <img src="assets/village.jpg" alt="Spaces to let" />
+    </div>
+  </div>
+</section>
+
+<!-- ============================== EARLY ACCESS ============================== -->
+<section class="access" id="access" data-screen-label="Early Access">
+  <div class="access__media ph">
+    <img src="assets/hero-lagoon.jpg" alt="Dusk over the lagoon" />
+  </div>
+  <div class="access__grad"></div>
+  <div class="access__inner reveal">
+    <div class="access__eyebrow eyebrow">Priority Access</div>
+    <h2 class="access__title">Be among the first ashore.</h2>
+    <p class="access__sub">Join the Early Access list for a first look, opening dates, and a standing invitation when the harbor opens.</p>
+    <form class="access__form" id="accessForm">
+      <input type="email" placeholder="Your email" required aria-label="Your email" />
+      <button type="submit" class="access__btn">Request Access</button>
+    </form>
+    <p class="access__micro">No noise. Only word from the harbor.</p>
+    <p class="access__success">Welcome aboard. We'll be in touch from Antiparos.</p>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="brand on-ink">
+    <span class="mono">AM</span>
+    <span class="word" style="font-size:1.6rem;">Antiparos Marine</span>
+    <span class="est">Est 2011</span>
+  </div>
+  <div class="footer__rule"></div>
+  <div class="footer__row">
+    <span>Antiparos · Cyclades · Greece</span>
+    <span class="footer__links">
+      <a href="#">Instagram</a><span class="dot"></span><a href="#">Contact</a>
+    </span>
+    <span>Est. 2011</span>
+  </div>
+  <p class="footer__tag">Belong to the island.</p>
+  <p class="footer__copy">© 2026 AntiParos Marine Group · Arriving 2026</p>
+</footer>
+
+<script>
+/* progressive enhancement: only hide-for-reveal when JS is alive */
+document.documentElement.className='js';
+document.body.classList.add('js');
+
+/* ---------- nav scroll state ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>80);},{passive:true});
+
+/* ---------- mobile menu ---------- */
+const burger=document.getElementById('burger');
+const menu=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>menu.classList.toggle('open'));
+menu.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+/* ---------- scroll reveal (IntersectionObserver — not timer-throttled) ---------- */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.18,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- vision line-by-line ---------- */
+const lineIO=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.reveal-line').forEach((l,i)=>l.style.transitionDelay=(i*0.12)+'s');
+      e.target.querySelectorAll('.reveal-line').forEach(l=>l.classList.add('in'));
+      lineIO.unobserve(e.target);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('.vision__quote').forEach(el=>lineIO.observe(el));
+
+/* ---------- harbor service swap ---------- */
+const items=document.querySelectorAll('.harbor__item');
+const stageImgs=document.querySelectorAll('#harborStage img');
+function activate(idx){
+  items.forEach(it=>it.classList.toggle('active',+it.dataset.img===idx));
+  stageImgs.forEach((im,i)=>im.classList.toggle('show',i===idx));
+}
+items.forEach(it=>{
+  it.addEventListener('mouseenter',()=>activate(+it.dataset.img));
+  it.addEventListener('click',()=>activate(+it.dataset.img));
+});
+
+/* ---------- early access form ---------- */
+document.getElementById('accessForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('access').classList.add('done');
+});
+
+/* ---------- subtle hero parallax ---------- */
+const heroContent=document.querySelector('.hero__content');
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  if(y<window.innerHeight){
+    heroContent.style.transform=`translateY(${y*0.18}px)`;
+    heroContent.style.opacity=Math.max(0,1-y/(window.innerHeight*0.7));
+  }
+},{passive:true});
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AntiParos Marine — Mobile Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#F4F1EA;--ink:#0E1F33;--cyan:#5BB8D6;--sand:#C9B79C;--brass:#A98B5D;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Mulish',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:var(--sans);background:#E7E2D7;color:var(--ink);
+  -webkit-font-smoothing:antialiased;padding:70px 40px 90px;
+  background-image:radial-gradient(circle at 50% 0%, #EFEBE1 0%, #E2DCCF 70%);
+  min-height:100vh;
+}
+.head{text-align:center;max-width:760px;margin:0 auto 64px;}
+.head .eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--brass);margin-bottom:22px;}
+.head h1{font-family:var(--serif);font-weight:300;font-size:3.4rem;line-height:1.05;letter-spacing:-.01em;margin-bottom:18px;}
+.head p{font-weight:300;font-size:1.05rem;line-height:1.6;color:rgba(14,31,51,.7);max-width:54ch;margin:0 auto;}
+.head .rule{width:60px;height:1px;background:var(--brass);margin:34px auto 0;}
+
+.rail{
+  display:flex;gap:48px;justify-content:center;align-items:flex-start;
+  flex-wrap:wrap;max-width:1700px;margin:0 auto;
+}
+.phone-block{display:flex;flex-direction:column;align-items:center;gap:22px;}
+.phone-label{text-align:center;}
+.phone-label .n{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);}
+.phone-label .t{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--ink);margin-top:4px;}
+
+/* iPhone bezel */
+.phone{
+  position:relative;width:392px;height:812px;border-radius:56px;
+  background:#0A1422;padding:13px;
+  box-shadow:0 2px 4px rgba(14,31,51,.3),0 30px 70px -20px rgba(14,31,51,.45),inset 0 0 0 2px rgba(255,255,255,.06);
+}
+.phone__screen{
+  position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:#000;
+}
+.phone__screen iframe{
+  width:375px;height:786px;border:0;display:block;
+  transform:scale(1.0245);transform-origin:top left;
+}
+/* dynamic island */
+.phone::after{
+  content:"";position:absolute;top:26px;left:50%;transform:translateX(-50%);
+  width:108px;height:30px;background:#0A1422;border-radius:18px;z-index:5;
+}
+.phone__glare{
+  position:absolute;inset:13px;border-radius:44px;pointer-events:none;z-index:4;
+  background:linear-gradient(125deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 22%);
+}
+.foot{text-align:center;margin-top:80px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(14,31,51,.45);}
+.foot .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--cyan);margin:0 10px;vertical-align:middle;}
+@media (max-width:900px){.head h1{font-size:2.4rem;}}
+</style>
+</head>
+<body>
+<div class="head">
+  <div class="eyebrow">AntiParos Marine Group</div>
+  <h1>The Mobile Experience</h1>
+  <p>The same one-page journey, reflowed for the phone — a full-bleed cinematic hero, a stacked editorial rhythm, and a touch-first service index. Scroll within any device to explore the live, responsive build.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="rail">
+  <div class="phone-block">
+    <div class="phone">
+      <div class="phone__screen"><iframe src="index.html" title="Hero" scrolling="no"></iframe></div>
+      <div class="phone__glare"></div>
+    </div>
+    <div class="phone-label"><div class="n">01 · Arrival</div><div class="t">The Hero</div></div>
+  </div>
+
+  <div class="phone-block">
+    <div class="phone">
+      <div class="phone__screen"><iframe src="index.html#vision" title="Vision" scrolling="no"></iframe></div>
+      <div class="phone__glare"></div>
+    </div>
+    <div class="phone-label"><div class="n">02 · Heritage</div><div class="t">The Vision</div></div>
+  </div>
+
+  <div class="phone-block">
+    <div class="phone">
+      <div class="phone__screen"><iframe src="index.html#harbor" title="Harbor" scrolling="no"></iframe></div>
+      <div class="phone__glare"></div>
+    </div>
+    <div class="phone-label"><div class="n">03 · The Offer</div><div class="t">The Harbor</div></div>
+  </div>
+
+  <div class="phone-block">
+    <div class="phone">
+      <div class="phone__screen"><iframe src="index.html#access" title="Early Access" scrolling="no"></iframe></div>
+      <div class="phone__glare"></div>
+    </div>
+    <div class="phone-label"><div class="n">04 · The Invitation</div><div class="t">Early Access</div></div>
+  </div>
+</div>
+
+<div class="foot">Scroll inside any device<span class="dot"></span>Live responsive build<span class="dot"></span>Belong to the island</div>
+
+<script>
+/* nudge each iframe to its section once loaded (hash + a gentle re-scroll for fixed nav) */
+document.querySelectorAll('.phone__screen iframe').forEach(f=>{
+  f.addEventListener('load',()=>{
+    try{
+      const hash=f.getAttribute('src').split('#')[1];
+      if(hash){const el=f.contentDocument.getElementById(hash);if(el)el.scrollIntoView({behavior:'instant'});}
+    }catch(e){}
+  });
+});
+</script>
+</body>
+</html>
