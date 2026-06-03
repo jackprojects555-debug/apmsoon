@@ -345,6 +345,11 @@ img{display:block;max-width:100%;}
 }
 .access.done .access__form,.access.done .access__micro{display:none;}
 .access.done .access__success{opacity:1;height:auto;}
+.access__error{
+  margin-top:14px;font-family:var(--sans);font-size:.82rem;
+  color:rgba(255,160,160,.9);letter-spacing:.04em;display:none;
+}
+.access__error.show{display:block;}
 
 /* ============================================================
    FOOTER
@@ -587,6 +592,7 @@ img{display:block;max-width:100%;}
     </form>
     <p class="access__micro">No noise. Only word from the harbor.</p>
     <p class="access__success">Welcome aboard. We'll be in touch from Antiparos.</p>
+    <p class="access__error" id="accessError">Something went wrong. Please try again.</p>
   </div>
 </section>
 
@@ -601,7 +607,7 @@ img{display:block;max-width:100%;}
   <div class="footer__row">
     <span>Antiparos · Cyclades · Greece</span>
     <span class="footer__links">
-      <a href="#">Instagram</a><span class="dot"></span><a href="#">Contact</a>
+      <a href="https://www.instagram.com/antiparosmarine" target="_blank" rel="noopener">Instagram</a><span class="dot"></span><a href="#">Contact</a>
     </span>
     <span>Est. 2011</span>
   </div>
@@ -655,9 +661,33 @@ items.forEach(it=>{
 });
 
 /* ---------- early access form ---------- */
-document.getElementById('accessForm').addEventListener('submit',e=>{
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwqqATcyk1FixHAFVgpImnfgM6mbPL6VRS8SpLYmhxrfnsuFWdHNlpo88lzcBSUV-5MHg/exec';
+document.getElementById('accessForm').addEventListener('submit',async function(e){
   e.preventDefault();
-  document.getElementById('access').classList.add('done');
+  const input=this.querySelector('input[type="email"]');
+  const btn=this.querySelector('.access__btn');
+  const errEl=document.getElementById('accessError');
+  const email=input.value.trim();
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    input.style.borderColor='rgba(255,140,140,.8)';
+    input.focus();
+    return;
+  }
+
+  errEl.classList.remove('show');
+  input.style.borderColor='';
+  btn.disabled=true;
+  btn.textContent='Sending…';
+
+  try{
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams({email,source:'website'})});
+    document.getElementById('access').classList.add('done');
+  }catch{
+    btn.disabled=false;
+    btn.textContent='Request Access';
+    errEl.classList.add('show');
+  }
 });
 
 /* ---------- subtle hero parallax ---------- */
